@@ -1,0 +1,241 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Estadístico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Análisis Estadístico de Datos</h1>
+        <p>
+            Página web con información, cálculos y gráficas
+            estadísticas sobre peso, altura, velocidad y color.
+        </p>
+    </header>
+
+    <section class="problematica">
+        <h2>Problemática</h2>
+
+        <p>
+            Se realizó un análisis estadístico sobre una base de datos
+            que contiene información relacionada con peso, altura,
+            velocidad y color. El objetivo fue identificar patrones,
+            distribuciones y representar los resultados mediante
+            gráficas estadísticas.
+        </p>
+    </section>
+
+    <section class="contenedor">
+
+        <div class="card">
+            <h2>Frecuencia Absoluta</h2>
+
+            <table>
+                <tr>
+                    <th>Color</th>
+                    <th>Frecuencia</th>
+                </tr>
+
+                <tr>
+                    <td>Verde</td>
+                    <td>12</td>
+                </tr>
+
+                <tr>
+                    <td>Amarillo</td>
+                    <td>9</td>
+                </tr>
+
+                <tr>
+                    <td>Blanco</td>
+                    <td>7</td>
+                </tr>
+
+                <tr>
+                    <td>NA</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>Frecuencia Relativa</h2>
+
+            <table>
+                <tr>
+                    <th>Color</th>
+                    <th>Porcentaje</th>
+                </tr>
+
+                <tr>
+                    <td>Verde</td>
+                    <td>41.38%</td>
+                </tr>
+
+                <tr>
+                    <td>Amarillo</td>
+                    <td>31.03%</td>
+                </tr>
+
+                <tr>
+                    <td>Blanco</td>
+                    <td>24.14%</td>
+                </tr>
+
+                <tr>
+                    <td>NA</td>
+                    <td>3.45%</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Frecuencia Acumulada</h2>
+
+        <ul>
+            <li>12</li>
+            <li>21</li>
+            <li>28</li>
+            <li>29</li>
+        </ul>
+    </section>
+
+    <section class="contenedor">
+
+        <div class="card media">
+            <h2>Media</h2>
+            <p>9.78</p>
+        </div>
+
+        <div class="card mediana">
+            <h2>Mediana</h2>
+            <p>10.3</p>
+        </div>
+
+        <div class="card moda">
+            <h2>Moda</h2>
+            <p>11</p>
+        </div>
+    </section>
+
+    <section class="graficas">
+
+        <div class="card">
+            <h2>Gráfica de Barras</h2>
+            <canvas id="barrasChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>Diagrama de Pastel</h2>
+            <canvas id="pastelChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>Frecuencia Acumulada</h2>
+            <canvas id="acumuladaChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>Polígono de Frecuencias</h2>
+            <canvas id="poligonoChart"></canvas>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const barras = document.getElementById('barrasChart');
+
+        new Chart(barras, {
+            type: 'bar',
+            data: {
+                labels: ['Verde', 'Amarillo', 'Blanco', 'NA'],
+                datasets: [{
+                    label: 'Frecuencia Absoluta',
+                    data: [12, 9, 7, 1],
+                    backgroundColor: [
+                        'green',
+                        'yellow',
+                        'lightgray',
+                        'gray'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        const pastel = document.getElementById('pastelChart');
+
+        new Chart(pastel, {
+            type: 'pie',
+            data: {
+                labels: ['Verde', 'Amarillo', 'Blanco', 'NA'],
+                datasets: [{
+                    data: [41.38, 31.03, 24.14, 3.45],
+                    backgroundColor: [
+                        'green',
+                        'yellow',
+                        'lightgray',
+                        'gray'
+                    ]
+                }]
+            }
+        });
+
+        const acumulada = document.getElementById('acumuladaChart');
+
+        new Chart(acumulada, {
+            type: 'line',
+            data: {
+                labels: ['Verde', 'Amarillo', 'Blanco', 'NA'],
+                datasets: [{
+                    label: 'Frecuencia Acumulada',
+                    data: [12, 21, 28, 29],
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0,0,255,0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            }
+        });
+
+        const poligono = document.getElementById('poligonoChart');
+
+        new Chart(poligono, {
+            type: 'line',
+            data: {
+                labels: ['Verde', 'Amarillo', 'Blanco', 'NA'],
+                datasets: [{
+                    label: 'Polígono de Frecuencias',
+                    data: [12, 9, 7, 1],
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(255,0,0,0.2)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5
+                }]
+            }
+        });
+
+    </script>
+
+    <footer>
+        <p>Proyecto de Estadística - HTML y CSS</p>
+    </footer>
+
+</body>
+</html>
