@@ -1,0 +1,4 @@
+# Formato: usuario,contraseña
+admin,admin123
+director,dir2024
+profesor,prof456
